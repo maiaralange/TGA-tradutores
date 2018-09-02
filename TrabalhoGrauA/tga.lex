@@ -8,37 +8,16 @@
 
 using namespace std;
 
-vector<string> listOfWords;
-
 int words = 0;
-int averageWordsPerPhrase = 0;
-int lexicalDensity = 0; 
-
-vector<string> explode(const string& s, const char& c)
-{
-	string buff{""};
-	vector<string> v;
-	
-	for(auto n:s)
-	{
-		if(n != c) buff+=n; else
-		if(n == c && buff != "") { v.push_back(buff); buff = ""; }
-	}
-	if(buff != "") v.push_back(buff);
-	
-	return v;
-}
+int phrases = 0;
 
 %}
 
 %%
 
-[A-Za-z ]*\. {
-	string text(yytext);
-	auto numOfWords = explode(text, ' ').size();
-	words += numOfWords;
-	phrases++;
-}
+[a-zA-Z]+\. { phrases++; REJECT; }
+[a-zA-Z]* {	words++; }
+. {}
 
 %%
 
@@ -47,8 +26,8 @@ int main(int argc, char *argv[]) {
 	yylex();
 	fclose(yyin);
 
-    printf("Number of words is %d\n", words); 
-	printf("Number of phrases is %d\n", phrases); 
+    printf("Number of words is %d.\n", words); 
+	printf("Number of phrases is %d.\n", phrases); 
 
 	return 0;
 }
