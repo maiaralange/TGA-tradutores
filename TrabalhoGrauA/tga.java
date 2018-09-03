@@ -6,6 +6,10 @@ class Animal {
    int age;
    String color;
 
+    public Animal() {
+        
+    }
+
    void hungry(int a) {
        this.color = "literal string";
    }
@@ -24,4 +28,8 @@ class Dog extends Animal {
 
        */
    }
+
+   public void setContent(String content) {
+        this.content = content;
+    }
 }

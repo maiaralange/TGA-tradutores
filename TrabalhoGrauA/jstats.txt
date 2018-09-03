@@ -1,0 +1,22 @@
+jstats Email.java
+
+Number of lines:				 52
+Number of comment lines:	 5
+Number of white lines:		 13
+Number of literal strings:	 1
+
+Classes:
+	Email
+Interfaces:
+	There are no interfaces in this file!
+Constructors:
+	Email
+Methods:
+	getSender
+	setSender
+	getRecipient
+	setRecipient
+	getSubject
+	setSubject
+	getContent
+	setContent
