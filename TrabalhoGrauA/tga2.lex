@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <string>
-#include <set>
+#include <vector>
 
 using namespace std;
 
@@ -14,6 +14,8 @@ int numberOfLines = 0;
 int numberOfWhiteLines = 0;
 int numberOfCommentLines = 0;
 int numberOfLiteralStrings = 0;
+vector<string> classes;
+vector<string> methods;
 
 void lineRule() {
     numberOfLines++;
@@ -32,14 +34,30 @@ void literalStringRule() {
     numberOfLiteralStrings++;
 }
 
+void classRule() {
+    string className(yytext);
+	className.erase(0, 6);
+	classes.push_back(className);
+}
+
+void methodRule() {
+    string methodName(yytext);
+	methods.push_back(methodName);
+}
+
 %}
 
 %%
 
-"//" commentLineRule();
 \n\n whiteLineRule(); REJECT;
 \n lineRule();
+"//" commentLineRule();
+
 \".*\" literalStringRule();
+
+(class|interface)\ [a-zA-Z ]* classRule();
+(void|int|float|String)\ [a-zA-Z ]* methodRule();
+
 . {}
 
 %%

@@ -1,3 +1,7 @@
+interface SerVivo {
+    void born();
+}
+
 class Animal {
    int age;
    String color;
