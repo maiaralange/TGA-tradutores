@@ -39,8 +39,8 @@ void wordsRule () {
 
 %%
 
-[a-zA-Z]+\. endOfPhraseRule(); REJECT;
-[a-zA-Z]* wordsRule();
+[a-zA-Z]+(\.|\?) 	endOfPhraseRule(); REJECT;
+[a-zA-Z]* 			wordsRule();
 . {}
 
 %%
