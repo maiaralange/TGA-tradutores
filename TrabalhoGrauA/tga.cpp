@@ -456,16 +456,40 @@ char *yytext;
 #line 4 "tga.lex"
 
 #include <stdio.h>
-#include <vector>
+#include <fstream>
 #include <string>
+#include <set>
 
 using namespace std;
 
-int words = 0;
-int phrases = 0;
+float numberOfWords = 0;
+float numberOfPhrases = 0;
+set<string> differentWords;
 
-#line 468 "tga.cpp"
-#line 469 "tga.cpp"
+void increasePhrasesCounter() {
+	numberOfPhrases++;
+}
+
+void endOfPhraseRule() {
+	increasePhrasesCounter();
+}
+
+void increaseWordsCounter() {
+	numberOfWords++;
+}
+
+void addWordToSetOfDifferentWords() {
+	string newWord(yytext);
+	differentWords.insert(newWord);
+}
+
+void wordsRule () {
+	increaseWordsCounter();
+	addWordToSetOfDifferentWords();
+}
+
+#line 492 "tga.cpp"
+#line 493 "tga.cpp"
 
 #define INITIAL 0
 
@@ -688,10 +712,10 @@ YY_DECL
 		}
 
 	{
-#line 16 "tga.lex"
+#line 40 "tga.lex"
 
 
-#line 695 "tga.cpp"
+#line 719 "tga.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -755,25 +779,25 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 18 "tga.lex"
-{ phrases++; REJECT; }
+#line 42 "tga.lex"
+endOfPhraseRule(); REJECT;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 19 "tga.lex"
-{	words++; }
+#line 43 "tga.lex"
+wordsRule();
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 20 "tga.lex"
+#line 44 "tga.lex"
 {}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 22 "tga.lex"
+#line 46 "tga.lex"
 ECHO;
 	YY_BREAK
-#line 777 "tga.cpp"
+#line 801 "tga.cpp"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1751,17 +1775,44 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 22 "tga.lex"
+#line 46 "tga.lex"
 
+
+int getNumberOfDifferentWords() {
+	return differentWords.size();
+}
+
+float getAverageNumberOfWordsPerPhrase() {
+	return numberOfWords / numberOfPhrases;
+}
+
+float getLexicalDensity() {
+	float numberOfDifferentWords = differentWords.size();
+	float lexicalDensity = numberOfDifferentWords / numberOfWords;
+	return lexicalDensity * 100;
+}
+
+void createAndPopulateStatsFile() {
+	ofstream statsFile;
+	statsFile.open("stats.txt");
+	statsFile << "Number of words: ";
+	statsFile << numberOfWords << endl;
+	statsFile << "Number of phrases: ";
+	statsFile << numberOfPhrases << endl;
+	statsFile << "Number of different words: ";
+	statsFile << getNumberOfDifferentWords() << endl;
+	statsFile << "Average number of words per phrases: ";
+	statsFile << getAverageNumberOfWordsPerPhrase() << endl;
+	statsFile << "Lexical density of the text: ";
+	statsFile << getLexicalDensity() << endl;
+	statsFile.close();
+}
 
 int main(int argc, char *argv[]) {
 	yyin = fopen(argv[1], "r");
 	yylex();
 	fclose(yyin);
-
-    printf("Number of words is %d.\n", words); 
-	printf("Number of phrases is %d.\n", phrases); 
-
+	createAndPopulateStatsFile();
 	return 0;
 }
 
