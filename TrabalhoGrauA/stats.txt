@@ -1,0 +1,5 @@
+Number of words:							 20
+Number of phrases:							 8
+Number of different words:					 16
+Average number of words per phrases:		 2.5
+Lexical density of the text:					 80

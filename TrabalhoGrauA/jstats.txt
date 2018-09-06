@@ -1,22 +1,20 @@
-jstats Email.java
+jstats Java.java
 
-Number of lines:				 52
-Number of comment lines:	 5
-Number of white lines:		 13
-Number of literal strings:	 1
+Number of lines:				 35
+Number of comment lines:	 4
+Number of white lines:		 9
+Number of literal strings:	 2
 
 Classes:
-	Email
+	Animal
+	Dog extends Animal
 Interfaces:
-	There are no interfaces in this file!
-Constructors:
-	Email
+	SerVivo
+Constructors: 
+	1 constructor(s) in this file!
 Methods:
-	getSender
-	setSender
-	getRecipient
-	setRecipient
-	getSubject
-	setSubject
-	getContent
+	issoEumMetodo
+	hungry
+	sleeping
+	barking 
 	setContent

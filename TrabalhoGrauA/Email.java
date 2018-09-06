@@ -2,7 +2,15 @@ public class Email {
     private String sender;
     private String recipient;
     private String subject;
-    private String content = "ola";
+    private String content = "
+    ola
+
+
+
+    
+    ";
+
+    public Email() {}
 
     public Email(String sender, String recipient, String subject, String content) {
         this.sender = sender;
