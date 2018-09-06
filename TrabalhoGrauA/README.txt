@@ -21,5 +21,6 @@ Somente algumas considerações sobre o trabalho:
   As "strings literais" podem estar em mais de uma linha.
   Separei por "classes", "interfaces" (pois não se encaixam na mesma definição), número de construtores e "métodos".
   Não considerei a visibilidade (somente para a REGEX do construtor).
+  Considerei algumas convenções nas REGEX como, por exemplo, nomes de classe sempre sendo PascalCase, e nomes de métodos como camelCase.
   Como foi mostrado no exemplo, eu coloquei o "extends <class>" como parte do nome da classe.
   Como não foi definido na descrição, eu resolvi mostrar só o nome de todas as coisas, sem parâmetros, retornos ou visibilidade.
