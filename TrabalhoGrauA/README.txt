@@ -2,6 +2,8 @@ Maiara Lange
 Trabalho 01 - Tradutores
 
 Usei C++ para facilitar o tratamento de strings.
+Junto com o trabalho, estou enviando os arquivos .lex, os compilados e os executáveis, assim como os arquivos que eu usei para teste (Text.txt, Java.java e Email.java) e os respectivos resultados que consegui (jstats.txt e stats.txt).
+
 A sintaxe que eu usei para compilar e gerar o executável é a seguinte: 
 1. Text Lexical Analyzer:
 flex -o TextLexicalAnalyzer.cpp TextLexicalAnalyzer.lex && g++ -std=c++11 -o TextLexicalAnalyzer TextLexicalAnalyzer.cpp && ./TextLexicalAnalyzer <filename>
